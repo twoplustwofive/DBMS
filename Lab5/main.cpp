@@ -45,7 +45,7 @@ ll modulo( ll value, ll m);
 ll myXOR(ll x, ll y) ;
 ll diff(ll a,ll b);
 
-ll cred(string s)
+ll credits(string s)
 {
   ll n = s.size();
   ll ans=0;
@@ -112,8 +112,11 @@ REP(i,0,18)
   ans+="Roll Number: ";
   ans+='\n';
   ll fd1,fd2;
+  ld cpi[8],spi[8];
+  ll total=0,score=0;
   REP(s,1,8)
   {
+    ll ctotal=0,cscore=0;
     ans+="SEMESTER: ";
     ans.PB(char(48+s));
     ans+='\n';
@@ -179,8 +182,7 @@ REP(i,0,18)
         while(buff2[mi]!='\n'&&buff2[mi]!='\0')
         {grd.PB(buff2[mi]);mi++;}
 
-        if(r=="180101002"&&roll=="180101002"&&cnum=="PH101"&&cnum1=="PH101")
-        cout<<cnum1<<' '<<cnum<<' '<<roll<<' '<<r<<' '<<s<<' '<<sem[0]<<'\n';
+
         if(cnum1==cnum&&roll==r&&s==int(sem[0]-'0'))
         {
 
@@ -192,13 +194,41 @@ REP(i,0,18)
           ans+="     ";
           ans+=grd;
           ans+="\n";
+          ctotal+=credits(cred);
+          cscore+=point(grd)*credits(cred);
+
         }
       }
       close(fd2);
 
     }
     close(fd1);
+    score+=cscore;
+    total+=ctotal;
+    spi[s-1]=double(cscore)/double(ctotal);
+    cpi[s-1]=double(score)/double(total);
+
   }
+  ans+="\n";
+ans+="         ";
+ans+="1        ";
+ans+="2        ";
+ans+="3        ";
+ans+="4        ";
+ans+="5        ";
+ans+="6        ";
+ans+="7        ";
+ans+="8        \n";
+ans+="SPI      ";
+REP(y,0,7)
+{ans+=to_string(spi[y]);ans+="    ";}
+ans+="\n";
+ans+="CPI      ";
+
+REP(y,0,7)
+{ans+=to_string(cpi[y]);ans+="    ";}
+ans+="\n";
+ans+="\n";
 
   ll temp=write(fd,ans.c_str(),ans.size());
 
