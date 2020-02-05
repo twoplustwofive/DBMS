@@ -1,0 +1,86 @@
+Name: ABHISHEK KUMAR                
+Roll Number: 180101003
+SEMESTER: 1
+Course Number | Course Name | C | Grade
+PH101            Physics-1                                                6     AB
+PH110            Physics Lab/ME110 Workshop                               3     AB
+CH101            Chemistry                                                8     AA
+CH110            Chemistry Lab                                            3     BB
+MA101            Mathematics-1                                            8     BC
+EE101            Basic Electronics                                        8     CD
+ME111            Engineering Drawing                                      7     AB
+HS100            English Communication                                    0     BB
+SEMESTER: 2
+Course Number | Course Name | C | Grade
+PH102            Physics-2                                                6     AB
+MA102            Mathematics-2                                            8     CC
+BT101            Introductory Biology                                     6     BC
+CS101            Introduction to Computing                                6     AA
+CS110            Computing Lab                                            3     AB
+ME101            Engineering Mechanics                                    8     CD
+ME110            Workshop/PH110 Physics Lab                               3     CC
+EE110            Basic Electronics Laboratory                             3     BC
+SA101            Students Activity Course-1                               0     CC
+SEMESTER: 3
+Course Number | Course Name | C | Grade
+MA222            Elementary Number Theory and Algebra                     6     AB
+MA225            Probability Theory and Random Processes                  8     AA
+CS201            Discrete Mathematics                                     6     CC
+CS203            Algorithms and Data Structures                           6     CC
+CS204            Algorithms and Data Structures Lab                       5     CD
+CS221            Digital Design                                           6     CD
+CS242            System Software Lab                                      5     AA
+SA201            Students Activity Course-2                               0     DD
+XX103M            Minor-1                                                  6     DD
+SEMESTER: 4
+Course Number | Course Name | C | Grade
+HS101            HSS1-1                                                   6     CD
+CS205            Formal Languages Automata Theory and Computation         6     AB
+CS207            Design and Analysis of Algorithms                        6     DD
+CS223            Computer Architecture and Organization                   6     BC
+CS224            Hardware Lab                                             6     BB
+CS245            Database Management Systems                              6     BC
+CS246            Database Management Systems Lab                          4     AB
+SA301            Students Activity Course-3                               0     CD
+XX104M            Minor-2                                                  6     CD
+SEMESTER: 5
+Course Number | Course Name | C | Grade
+MA321            Optimization                                             6     DD
+HS102            HSS1-2                                                   6     CC
+CS341            Computer Networks                                        6     CD
+CS342            Computer Networks Lab                                    4     AA
+CS343            Operating Systems                                        6     CD
+CS344            Operating Systems Lab                                    4     BC
+CS501            Departmental Elective 5.1                                6     CC
+SA401            Students Activity Course-4                               0     AB
+XX105M            Minor-3                                                  6     CD
+SEMESTER: 6
+Course Number | Course Name | C | Grade
+CS345            Software Engineering                                     4     AB
+CS346            Software Engineering Lab                                 3     AA
+CS348            Implementation of Programming Languages Lab              7     DD
+CS361            Machine Learning                                         6     BC
+CS403            Departmental Elective 6.1                                6     AA
+CS404            Departmental Elective 6.2                                6     AB
+CS405            Departmental Elective Lab 6.3                            5     DD
+XX101M            Minor-4                                                  6     BB
+SEMESTER: 7
+Course Number | Course Name | C | Grade
+HS201            HSS-2-1                                                  6     AA
+OE101            Open Elective 1                                          6     CD
+OE102            Open Elective 2/CS101 Elective 7.1                       6     AB
+CS401            Elective 7.2                                             6     BB
+CS498            BTP Phase - 1                                           12     BC
+XX102M            Minor 5                                                  6     AB
+SEMESTER: 8
+Course Number | Course Name | C | Grade
+HS202            HSS-2-2                                                  6     DD
+OE201            Open Elective 3                                          6     DD
+OE202            Open Elective 4                                          6     BC
+CS402            Elective 8.1                                             6     AA
+CS499            BTP Phase - 2                                           12     AB
+
+         1        2        3        4        5        6        7        8        
+SPI      8    7.21    6.98    6.65    5.77    7.4    7.86    7.17    
+CPI     8    7.6    7.38    7.19    6.92    6.99    7.11    7.12    
+

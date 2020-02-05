@@ -5,6 +5,7 @@
 #include<fcntl.h>
 #include<unistd.h>
 #include<stdlib.h>
+#include<string.h>
 using namespace std;
 #define IOS { ios :: sync_with_stdio(false); cin.tie(0); cout.tie(0); }
 
@@ -50,6 +51,7 @@ ll credits(string s)
   ll n = s.size();
   ll ans=0;
   REP(i,0,n-1)
+    if(s[i]!=' ')
   ans+=int(char(s[i]-'0'))*pow(10,n-i-1);
   return ans;
 }
@@ -92,12 +94,14 @@ while(rep--)
 {
 
 ll st = open("students03.csv",O_RDONLY);
-
-REP(i,0,18)
+ll accstud=0,accgrade=0,acccourse=0,lseekg=0,accw=0;
+REP(i,0,157)
 {
-  char *buff=(char*)malloc(sizeof(char)*34);
+  lseek(st,i*41,SEEK_SET);
+  accstud++;
+  char *buff=(char*)malloc(sizeof(char)*41);
   string n="",r="";
-  ll t=read(st,buff,34);
+  ll t=read(st,buff,41);
   ll j=0;
   while(buff[j]!=',')
   {n.PB(buff[j]);j++;}
@@ -105,37 +109,60 @@ REP(i,0,18)
   while(buff[j]!='\n'&&buff[j]!='\0')
   {r.PB(buff[j]);j++;}
 
-  ll fd = open((r+".txt").c_str(),O_CREAT|O_WRONLY|O_TRUNC,0600);
+  ll fd = open((r+".txt").c_str(),O_CREAT|O_WRONLY|O_TRUNC|O_SYNC,0600);
+  ll w;
   string ans="Name: ";
   ans+=n;
   ans+='\n';
   ans+="Roll Number: ";
+  ans+=r;
   ans+='\n';
   ll fd1,fd2;
-  ld cpi[8],spi[8];
+  ld *cpi=(ld*)malloc(sizeof(ld)*8);
+  ld *spi=(ld*)malloc(sizeof(ld)*8);
+  
   ll total=0,score=0;
+  cout<<n<<' '<<r<<'\n';
+  free(buff);
   REP(s,1,8)
   {
+    
     ll ctotal=0,cscore=0;
     ans+="SEMESTER: ";
     ans.PB(char(48+s));
     ans+='\n';
     ans+="Course Number | Course Name | C | Grade\n";
-
     fd1 = open("courses03.csv",O_RDONLY);
-    REP(c,1,20)
+    fsync(fd1);
+    fdatasync(fd1);
+    REP(c,0,62)
     {
+      lseek(fd1,c*68,SEEK_SET);
       string sem="",cname1="",cnum1="",cred="";
-      char *buff1 = (char*)malloc(sizeof(char)*56);
-      ll r2 = read(fd1,buff1,56);
+      char *buff1 = (char*)malloc(sizeof(char)*68);
+      acccourse++;
+      ll r2 = read(fd1,buff1,68);
 
       ll mi1=0;
       while(buff1[mi1]!=',')
       {sem.PB(buff1[mi1]);mi1++;}
       mi1++;
-      while(buff1[mi1]!=',')
-      {cnum1.PB(buff1[mi1]);mi1++;}
-      mi1++;
+      while(1)
+      {
+        if(buff1[mi1]==' ')
+        {
+          mi1+=2;
+          break;
+        }
+        else
+          if(buff1[mi1]==',')
+          {
+            mi1++;
+            break;
+          }
+          else
+          {cnum1.PB(buff1[mi1]);mi1++;}
+      }
       while(buff1[mi1]!=',')
       {cname1.PB(buff1[mi1]);mi1++;}
       mi1++;
@@ -152,12 +179,20 @@ REP(i,0,18)
       {cred.PB(buff1[mi1]);mi1++;}
       mi1++;
       fd2 = open("grades03.csv",O_RDONLY);
-      REP(x,1,20)
+      fsync(fd2);
+      fdatasync(fd2);
+      free(buff1);
+      ll line=0;
+      REP(x,0,9953)
       {
-
+        
+        
+        lseekg++;
         char *buff2 = (char*)malloc(sizeof(char)*20);
+      
         string roll="",cnum="",grd="";
         ll r1 = read(fd2,buff2,20);
+        accgrade++;
         ll mi=0;
         while(buff2[mi]!=',')
         {roll.PB(buff2[mi]);mi++;}
@@ -198,6 +233,7 @@ REP(i,0,18)
           cscore+=point(grd)*credits(cred);
 
         }
+        free(buff2);
       }
       close(fd2);
 
@@ -221,20 +257,35 @@ ans+="7        ";
 ans+="8        \n";
 ans+="SPI      ";
 REP(y,0,7)
-{ans+=to_string(spi[y]);ans+="    ";}
-ans+="\n";
-ans+="CPI      ";
+{
+  char temp[5];
+  gcvt(spi[y],3,temp);
+  ans+=temp;
+  ans+="    ";
+  
+}
+ans+='\n';
+ans+="CPI     ";
 
 REP(y,0,7)
-{ans+=to_string(cpi[y]);ans+="    ";}
+{
+  char temp[5];
+  gcvt(cpi[y],3,temp);
+  ans+=temp;
+  ans+="    ";
+  
+  
+}
 ans+="\n";
 ans+="\n";
 
-  ll temp=write(fd,ans.c_str(),ans.size());
-
+  ll temp=write(fd,ans.c_str(),ans.size());accw++;
+free(cpi);
+free(spi);
 }
 
 
+cout<<accstud<<' '<<accgrade<<' '<<acccourse<<' '<<lseekg<<' '<<accw<<'\n';
 
 
 
