@@ -1,0 +1,54 @@
+SELECT DISTINCT room_id,course_id FROM room_allocation
+WHERE course_id = 'BT101' OR course_id = 'CE201' OR course_id = 'CH211' OR course_id = 'CL205' OR course_id = 'CS101' OR course_id = 'DD111' OR course_id = 'EE206' OR course_id = 'HS113' OR course_id = 'MA102' OR course_id = 'ME101' OR course_id = 'PH102' OR course_id = 'RT515';
+
+
+
+SELECT roll_no,room_id FROM room_allocation
+WHERE course_id = 'CS101';
+
+
+
+SELECT DISTINCT c.course_name,r.room_location
+FROM courses AS c INNER JOIN room_allocation as ra INNER JOIN rooms as r
+WHERE c.course_id=ra.course_id AND ra.date='03-05-2020' AND ra.time='14:00 to 17:00';
+
+
+
+SELECT ra.course_id FROM
+room_allocation AS ra INNER JOIN rooms AS r
+WHERE ra.room_id = r.room_id
+AND (r.room_location='Core V' OR r.room_location='Gallery Ⅱ');
+
+
+
+SELECT ra.course_id FROM
+room_allocation AS ra INNER JOIN rooms AS r
+WHERE ra.room_id=r.room_id
+AND (r.room_location='Core Ⅰ');
+
+
+
+SELECT DISTINCT course_id FROM (SELECT DISTINCT room_id,course_id FROM room_allocation) AS r3 GROUP BY course_id
+HAVING COUNT(course_id)=
+(SELECT MIN(count) FROM
+(SELECT COUNT(course_id) AS count FROM
+(SELECT DISTINCT room_id,course_id FROM room_allocation) AS r1 GROUP BY course_id) AS r2);
+
+
+
+SELECT DISTINCT course_id FROM (SELECT DISTINCT room_id,course_id FROM room_allocation) AS r3 GROUP BY course_id
+HAVING COUNT(course_id)=
+(SELECT MAX(count) FROM
+(SELECT COUNT(course_id) AS count FROM
+(SELECT DISTINCT room_id,course_id FROM room_allocation) AS r1 GROUP BY course_id) AS r2);
+
+
+
+SELECT DISTINCT course_id FROM room_allocation AS ra
+WHERE SUBSTRING(date,4,2)="02";
+
+
+SELECT DISTINCT course_id FROM room_allocation AS ra
+WHERE SUBSTRING(date,4,2)="05";
+
+///8th query is left
